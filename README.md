@@ -5,7 +5,7 @@
 </p>
 
 <br>
-About me
+## **About me**
 <br> 
 Here are some ideas to get you started:
 <br> 
