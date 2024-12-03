@@ -1,18 +1,17 @@
 """
-Este programa se desarollo con la intención de generar una tabla en formato de archivo.txt
-con parametros básicos para el diseño de una PCR convencional a partir de datos .fna
-obtenidos del GenBank.
+This program was developed with the intention of generating a table in .txt file format
+with basic parameters for the design of a conventional PCR from .fna data obtained from GenBank.
 """
 
 from tabulate import tabulate
 
 
 def complementary_sequence (sequence):
-    """ Esta función retorna la cadena complementaria de ADN a la secuencia.
+    """ This function returns the complementary DNA strand to the sequence.
 
-    La secuencia de retorno se crea reemplazando la base nitrogenada en
-    la hebra molde por su respectiva base complementaria, según el apareamiento
-    denominado por Watson y Crick
+    The return sequence is created by replacing the nitrogenous base 
+    on the template strand with its respective complementary base, 
+    according to the pairing called by Watson and Crick
     """
     complementary_sequence = ""
     for nucleotide in sequence:
@@ -30,10 +29,10 @@ def complementary_sequence (sequence):
 
 
 def melting_temperature (Temp_melting):
-    """ Esta función retorna el valor de la temperatura de melting del primer.
-
-    Cuenta la cantidad de A,T,G y C, en el primer y despúes opera con la formula
-    2*(A+T)*4*(G+C)
+    """ This function returns the value of the melting temperature of the primer.
+    
+    Count the amount of A,T,G and C, in the first and then operate 
+    with the formula 2*(A+T)*4*(G+C).
     """
     primer = Temp_melting
     count_A = primer.count("A")
@@ -48,33 +47,33 @@ gene_sequence = ""
 list_gene_names = []
 list_genes_sequences = []
 
-with open("D:\Ejercicios_FdeP_CIencias_Biológicas\Bsubtilis_CDS.fna.txt") as file:
-    # Reemplazar la anterior línea de código con el archivo a utilizar en formato .fna
+with open("D:\Ejercicios_FdeP_CIencias_Biológicas\Bsubtilis_CDS.fna") as file:
+    # Replace the above line of code with the file to be used in .fna format
 
     """
-    Este bloque de código:
-    1. Almacena el nombre del gen o locus en una lista.
-    2. Ensambla la secuencia respectiva del gen y guarda en una lista 
+    This code block:
+    1. Stores the name of the gene or locus in a list.
+    2. Assembles the respective gene sequence and saves it in a list. 
     """
 
     for line in file:
         if line.startswith(">"):
             list_genes_sequences.append(gene_sequence)
-            line = line.split() # Separa la línea que contiene la información de cada gen  en el archivo .fna
-            gene_or_locus_name = line[1].split("=")[1][: -1] # Extra el nombre del gen o locus
+            line = line.split() # Separates the line containing the information for each gene in the .fna file.
+            gene_or_locus_name = line[1].split("=")[1][: -1] # Extracts the gene or locus name.
             list_gene_names.append(gene_or_locus_name)
             gene_sequence = ""
         else:
             gene_sequence = gene_sequence + line
             gene_sequence = gene_sequence.rstrip()
 
-list_genes_sequences.append(gene_sequence) # Añade la secuencia del último gen al terminar el ciclo
-list_genes_sequences.pop(0) # Elimina el primer valor de la lista que es un espacio vacío
+list_genes_sequences.append(gene_sequence) # Add the sequence of the last gene at the end of the cycle.
+list_genes_sequences.pop(0) # Deletes the first value in the list that is an empty space
 
 """ 
-Punto de control:
-El número de elementos en la lista de genes debe 
-ser igual al número de secuencias en su respectiva lista
+Checkpoint:
+The number of items in the gene list must be equal 
+to the number of sequences in their respective list
 """
 
 number_gene_names = len(list_gene_names)
@@ -82,25 +81,25 @@ number_gene_sequences = len(list_genes_sequences)
 # print(number_gene_names)
 # print(number_gene_sequences)
 
-control_of_cycle = 0 # Al alcanzar cierto valor interrumpe el siguiente ciclo
-size_primer = 22 # Esta es la variable más importante del programa y relaciona todas las condiciones siguientes
-main_table = [] # Pondra los datos en forma de tabla [Nombre del gen, Primer f y r_ Tm]
+control_of_cycle = 0 # Reaching a certain value interrupts the next cycle.
+size_primer = 22 # This is the most important variable in the programme and relates all of the following conditions.
+main_table = [] # Put the data in the form of a table [Gene name, Primer f and r_ Tm].
 
-# Este ciclo crea las filas y columnas para una tabla
+# This cycle creates the rows and columns for a table.
 
 for gene_name in list_gene_names:
-    position_gene_sequences = list_genes_sequences[control_of_cycle]  #Recorre los genes por posición en la lista
+    position_gene_sequences = list_genes_sequences[control_of_cycle]  # Scroll through the genes by position in the list
     complete_complementary_sequence = (complementary_sequence(position_gene_sequences))
-    #  La anterior línea recorre las secuencias por posición en la lista
+    #  The above line goes through the sequences by position in the list
     number_of_nucleotides = f"{len(complete_complementary_sequence)} pb"
     primer_f = f"5´- {complete_complementary_sequence [0: size_primer]} -3´"
-    # La anterior línea toma los primeros 22 nucleotidos de la secuencia complementaria en dirección 3'- 5'
+    # The above line takes the first 22 nucleotides of the complementary sequence in the 3‘- 5’ direction.
     primer_r = f"3´- {complete_complementary_sequence [-size_primer:]} -5´"
-    #La anterior línea toma los primeros 22 nucleotidos de la secuencia complementaria en dirección 5'- 3'
+    # The above line takes the first 22 nucleotides of the complementary sequence in the 5‘- 3’ direction.
     Tm_primer_f = melting_temperature(primer_f)
     Tm_primer_r = melting_temperature(primer_r)
-    Ta_primer_f = Tm_primer_f - 4 # Calcula la temperatura de annealign del primer forward
-    Ta_primer_r = Tm_primer_r - 4 # Calcula la temperatura de annealign del primer reverse
+    Ta_primer_f = Tm_primer_f - 4 # Calculate annealign temperature of the first forward
+    Ta_primer_r = Tm_primer_r - 4 # Calculate the annealign temperature of the first reverse
     table_renglon = [gene_name,
                      number_of_nucleotides,
                      primer_f, primer_r,
@@ -125,20 +124,20 @@ total_table = tabulate(main_table, headers=["Gene or locus name",
                                  "center", "center" )
                        )
 
-#print(total_table) # Vista previa de la tabla en la consola de Python
+#print(total_table) # Table preview in the Python console
 """
-Esta bloque de código:
-1. Crea un documento en el cual se van a escribir los resultados
-2. Genera la tabla final en un archivo .txt
-3. Muestra en la consola de Python la finalización del proceso
+This code block:
+1. Create a document in which the results are to be written.
+2. Generates the final table as a .txt file
+3. Show in the Python console the end of the process.
 """
-name_output_file = "Resultados" # Introduzca en esta variable el nombre de su archiivo, especificando el organismo
+name_output_file = "Results" # Enter in this variable the name of your file, specifying the organism
 
 file1 = open (f"{name_output_file}.txt", "w")
 file1.write(total_table)
 file1.close()
 
-print(f" El documento ya se creo en tu carpeta de archivos con el siguiente nombre: "
-      f"{name_output_file}.txt") # Permite observar la terminación de la ejecución del programa en la consola
+print(f" The document is already created in your file folder with the following name: "
+      f"{name_output_file}.txt") # Allows to observe the termination of the programme execution in the console.
 
 
