@@ -140,22 +140,22 @@ and therefore in the genome of the organism from which the .fna file comes from.
 parameters = []
 row_max_number_nucleotides = df.loc[df["Number of nucleotides"].idxmax()]
 # The previous line Identifies the row of the gene with the highest number of nucleotides
-parameters.append(["Mayor número de nucleótidos", row_max_number_nucleotides["Gene or locus name"],
+parameters.append(["Higher number of nucleotides", row_max_number_nucleotides["Gene or locus name"],
                    row_max_number_nucleotides["Number of nucleotides"]])
 # The previous line adds the most relevant information from the line with the highest number of nucleotides to the list.
 row_min_number_nucleotides = df.loc[df["Number of nucleotides"].idxmin()]
 # The previous line Identifies the row of the gene with the lowest number of nucleotides
-parameters.append(["Menor número de nucleótidos", row_min_number_nucleotides["Gene or locus name"],
+parameters.append(["Lower number of nucleotides", row_min_number_nucleotides["Gene or locus name"],
                    row_min_number_nucleotides["Number of nucleotides"]])
 # The previous line adds the most relevant information from the line with the lowest number of nucleotides to the list.
 row_max_Tm_primer_F = df.loc[df["Tm Primer F"].idxmax()]
-parameters.append(["Máximo Tm Primer F", row_max_Tm_primer_F["Gene or locus name"], row_max_Tm_primer_F["Tm Primer F"]])
+parameters.append(["Máx Tm Primer F", row_max_Tm_primer_F["Gene or locus name"], row_max_Tm_primer_F["Tm Primer F"]])
 row_max_Tm_primer_R = df.loc[df["Tm Primer R"].idxmax()]
-parameters.append(["Máximo Tm Primer R", row_max_Tm_primer_R["Gene or locus name"], row_max_Tm_primer_R["Tm Primer R"]])
+parameters.append(["Máx Tm Primer R", row_max_Tm_primer_R["Gene or locus name"], row_max_Tm_primer_R["Tm Primer R"]])
 row_min_Tm_primer_F = df.loc[df["Tm Primer F"].idxmin()]
-parameters.append(["Mínimo Tm Primer F", row_min_Tm_primer_F["Gene or locus name"], row_min_Tm_primer_F["Tm Primer F"]])
+parameters.append(["Mín Tm Primer F", row_min_Tm_primer_F["Gene or locus name"], row_min_Tm_primer_F["Tm Primer F"]])
 row_min_Tm_primer_R = df.loc[df["Tm Primer R"].idxmin()]
-parameters.append(["Mínimo Tm Primer R", row_min_Tm_primer_R["Gene or locus name"], row_min_Tm_primer_R["Tm Primer R"]])
+parameters.append(["Mín Tm Primer R", row_min_Tm_primer_R["Gene or locus name"], row_min_Tm_primer_R["Tm Primer R"]])
 
 """
 This code block contains two ways of generating the data report in a PDF file, in the first one each graph is displayed 
@@ -285,7 +285,7 @@ with PdfPages('output_graphics.pdf') as pdf:
 # Generate PDF with all small graphics on a single page
 with PdfPages('single_page_report.pdf') as pdf:
     # Create a figure with subplots (organised in 3 rows and 3 columns)
-    fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+    fig, axes = plt.subplots(3, 3, figsize=(18, 12))
     fig.suptitle("Summary of Graphs and Parameters", fontsize=16)
 
     # Histograma
