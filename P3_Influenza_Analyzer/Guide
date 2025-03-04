@@ -18,12 +18,6 @@
 ├── 📁 docs/                    # Documentación del proyecto
 │   ├── manual_usuario.pdf
 │   ├── API_documentation.md
-├── 📁 tests/                   # Pruebas unitarias
-│   ├── test_gc_content.py
-│   ├── test_mutations.py
-├── .gitignore                  # Archivos a excluir del control de versiones
 ├── LICENSE                     # Licencia del proyecto
-├── Description.md                    # Descripción general del proyecto
-├── requirements.txt             # Dependencias necesarias
+├── Description.md               # Descripción general del proyecto
 ├── setup.py                     # Script de instalación del paquete
-└── CONTRIBUTING.md              # Guía para contribuir al proyecto
