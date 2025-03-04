@@ -15,9 +15,9 @@
 │   ├── main.py                 # Script principal
 ├── 📁 data/                    # Archivos de entrada/salida
 │   ├── example_sequence.fasta
+│   ├── example_data_base.fasta
 ├── 📁 docs/                    # Documentación del proyecto
 │   ├── manual_usuario.pdf
-│   ├── API_documentation.md
 ├── LICENSE                     # Licencia del proyecto
 ├── Description.md               # Descripción general del proyecto
 ├── setup.py                     # Script de instalación del paquete
