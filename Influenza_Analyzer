@@ -1,0 +1,26 @@
+📦 Influenza_Analyzer
+├── 📁 Functions/                     # Código fuente del programa
+│   ├── conteo_gc_ta.py
+│   ├── mutations_insertion.py
+│   ├── genetic_modification.py
+│   ├── new_proteins.py
+│   ├── plot_gc_ta_content.py
+│   ├── proteins_plot.py
+│   ├── phylogenetic_creator.py
+│   ├── Blastn_analyze.py
+│   ├── blast_database.py
+│   ├── main.py                 # Script principal
+├── 📁 data/                    # Archivos de entrada/salida
+│   ├── example_sequence.fasta
+├── 📁 docs/                    # Documentación del proyecto
+│   ├── manual_usuario.pdf
+│   ├── API_documentation.md
+├── 📁 tests/                   # Pruebas unitarias
+│   ├── test_gc_content.py
+│   ├── test_mutations.py
+├── .gitignore                  # Archivos a excluir del control de versiones
+├── LICENSE                     # Licencia del proyecto
+├── README.md                    # Descripción general del proyecto
+├── requirements.txt             # Dependencias necesarias
+├── setup.py                     # Script de instalación del paquete
+└── CONTRIBUTING.md              # Guía para contribuir al proyecto
