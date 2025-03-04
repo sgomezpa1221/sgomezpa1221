@@ -1,6 +1,7 @@
 📦 Influenza_Analyzer
 ├── 📁 Functions/                     # Código fuente del programa
 │   ├── ayuda_influenza_analyzer.py
+│   ├── blast_comparation.py
 │   ├── conteo_gc_ta.py
 │   ├── mutations_insertion.py
 │   ├── genetic_modification.py
